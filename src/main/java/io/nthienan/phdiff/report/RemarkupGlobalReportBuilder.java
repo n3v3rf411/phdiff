@@ -100,11 +100,11 @@ public class RemarkupGlobalReportBuilder implements GlobalReportBuilder {
           .append(infoIssues > 1 ? "s" : "")
           .append(" (").append(remarkupUtils.icon(Severity.INFO)).append(")\n");
       }
-      sum.append("See inline comments for more detail.");
+      sum.append("See inline comments for more details .\n= (๑′°︿°๑) =");
     } else {
       sum.append(bold("SonarQube"))
-        .append(" has found no issue.")
-        .append(" You are great developer.");
+        .append(" has found no issues.")
+        .append(" You are a great developer! = ＼\\\\ ٩( ᐛ )و /／ =");
     }
     return sum.toString();
   }

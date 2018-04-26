@@ -58,7 +58,7 @@ class PhabricatorDifferentialPostJob(
               val ic = inlineReportBuilder.issue(i).build()
               val filePath = i.componentKey().replace(projectKey, "").substring(1)
               try {
-                differentialClient.postInlineComment(diffID, filePath, i.line()!!, ic)
+                differentialClient.postInlineComment(diffID, filePath, i.line() ?: 1, ic)
                 log.debug("Comment $ic has been published")
               } catch (e: ConduitException) {
                 if (e.message.equals("Requested file doesn't exist in this revision.")) {

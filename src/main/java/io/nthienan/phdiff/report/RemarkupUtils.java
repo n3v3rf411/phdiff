@@ -91,9 +91,9 @@ public class RemarkupUtils {
     return result;
   }
 
-  public String source(String componentKey, int line) {
+  public String source(String componentKey, Integer line) {
     return String.format("%s - %s:",
-      italics(String.valueOf(String.format("Line %s", line))),
+      italics(String.valueOf(String.format("Line %s", line != null ? line : 1))),
       code(componentKey.replace(projectKey, "").substring(1)));
   }
 
