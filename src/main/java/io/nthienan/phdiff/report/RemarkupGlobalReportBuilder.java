@@ -1,7 +1,6 @@
 package io.nthienan.phdiff.report;
 
-import org.sonar.api.batch.BatchSide;
-import org.sonar.api.batch.InstantiationStrategy;
+import org.sonar.api.scanner.ScannerSide;
 import org.sonar.api.batch.postjob.issue.PostJobIssue;
 import org.sonar.api.batch.rule.Severity;
 
@@ -14,8 +13,7 @@ import static io.nthienan.phdiff.report.RemarkupUtils.bold;
  *
  * @author nthienan
  */
-@BatchSide
-@InstantiationStrategy(InstantiationStrategy.PER_BATCH)
+@ScannerSide
 public class RemarkupGlobalReportBuilder implements GlobalReportBuilder {
 
   private RemarkupUtils remarkupUtils;

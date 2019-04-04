@@ -1,9 +1,7 @@
 package io.nthienan.phdiff
 
 import org.sonar.api.CoreProperties
-import org.sonar.api.batch.BatchSide
-import org.sonar.api.batch.InstantiationStrategy
-import org.sonar.api.config.Settings
+import org.sonar.api.scanner.ScannerSide
 import org.sonar.api.utils.System2
 import org.sonar.api.utils.log.Loggers
 import java.net.*
@@ -12,9 +10,8 @@ import java.net.*
  * Created on 29-Jul-17.
  * @author nthienan
  */
-@BatchSide
-@InstantiationStrategy(InstantiationStrategy.PER_BATCH)
-class Configuration(val settings: Settings, val system2: System2) {
+@ScannerSide
+class Configuration(val settings: org.sonar.api.config.Configuration, val system2: System2) {
   companion object {
     const val HTTP_PROXY_HOST = "http.proxyHost"
     const val HTTPS_PROXY_HOST = "https.proxyHost"
@@ -26,13 +23,13 @@ class Configuration(val settings: Settings, val system2: System2) {
     val LOG = Loggers.get(Configuration::class.java)
   }
 
-  fun diffId(): String = settings.getString(PhabricatorDifferentialPlugin.DIFF_ID) ?: ""
+  fun diffId(): String = settings.get(PhabricatorDifferentialPlugin.DIFF_ID).orElse("")
 
-  fun conduitToken(): String = settings.getString(PhabricatorDifferentialPlugin.CONDUIT_TOKEN) ?: ""
+  fun conduitToken(): String = settings.get(PhabricatorDifferentialPlugin.CONDUIT_TOKEN).orElse("")
 
-  fun phabricatorUrl(): String = settings.getString(PhabricatorDifferentialPlugin.PHABRICATOR_URL) ?: ""
+  fun phabricatorUrl(): String = settings.get(PhabricatorDifferentialPlugin.PHABRICATOR_URL).orElse("")
 
-  fun projectKey(): String = settings.getString(CoreProperties.PROJECT_KEY_PROPERTY) ?: ""
+  fun projectKey(): String = settings.get(CoreProperties.PROJECT_KEY_PROPERTY).orElse("")
 
   fun isProxyEnabled(): Boolean =
     system2.property(HTTP_PROXY_HOST) != null

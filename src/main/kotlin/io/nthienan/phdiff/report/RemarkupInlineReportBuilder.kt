@@ -1,15 +1,13 @@
 package io.nthienan.phdiff.report
 
-import org.sonar.api.batch.BatchSide
-import org.sonar.api.batch.InstantiationStrategy
+import org.sonar.api.scanner.ScannerSide
 import org.sonar.api.batch.postjob.issue.PostJobIssue
 
 /**
  * Created on 20-Jul-17.
  * @author nthienan
  */
-@BatchSide
-@InstantiationStrategy(InstantiationStrategy.PER_BATCH)
+@ScannerSide
 class RemarkupInlineReportBuilder(val remarkupUtils: RemarkupUtils) : InlineReportBuilder {
 
   private var issue: PostJobIssue? = null

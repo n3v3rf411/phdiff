@@ -2,7 +2,7 @@ package io.nthienan.phdiff.report;
 
 import org.apache.commons.lang.StringUtils;
 import org.sonar.api.CoreProperties;
-import org.sonar.api.batch.BatchSide;
+import org.sonar.api.scanner.ScannerSide;
 import org.sonar.api.batch.InstantiationStrategy;
 import org.sonar.api.batch.postjob.issue.PostJobIssue;
 import org.sonar.api.batch.rule.Severity;
@@ -17,8 +17,7 @@ import java.net.URLEncoder;
  *
  * @author nthienan
  */
-@BatchSide
-@InstantiationStrategy(InstantiationStrategy.PER_BATCH)
+@ScannerSide
 public class RemarkupUtils {
 
   private final String ruleUrlPrefix;
